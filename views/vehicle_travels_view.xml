@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<!--                             calendar-->
+          <record id="vehicle_travels_view_calendar" model="ir.ui.view">
+              <field name="name">vehicle_travels.calendar</field>
+              <field name="model">vehicle.travels</field>
+              <field name="arch" type="xml">
+                  <calendar  date_start="date" color="facilities_id" mode="month">
+                      <field name="name"/>
+                  </calendar>
+              </field>
+          </record>
+         <record id="vehicle_travels_view_tree" model="ir.ui.view" >
+             <field name="name">vehicle.travels.tree</field>
+             <field name="model">vehicle.travels</field>
+             <field name="arch" type="xml">
+                 <tree string="vehicle_travels">
+                     <field name="name" readonly="True"/>
+                     <field name="registration_no"/>
+                     <field name="vehicle_type"/>
+                     <field name="number_of_seats"/>
+                     <field name="facilities_id"/>
+                 </tree>
+             </field>
+         </record>
+        <record id="vehicle_travels_view_form" model="ir.ui.view">
+            <field name="name">vehicle.travels.form</field>
+            <field name="model">vehicle.travels</field>
+            <field name="arch" type="xml">
+                <form string="vehicle_travels">
+                    <sheet>
+                        <group>
+                            <group>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="number_of_seats"/>
+                                </group>
+                                </group>
+                            <group>
+                                <field name="registration_no"/>
+                                <field name="vehicle_type"/>
+                                <field name="facilities_id" widget="many2many_tags"/>
+                            </group>
+                            </group>
+<!--                        notebook -->
+                        <notebook>
+                            <page string="Vehicle Charges">
+                                <field name="order_line_travel_ids">
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="vehicle_travels_action" model="ir.actions.act_window" >
+            <field name="name">Vehicle</field>
+            <field name="res_model">vehicle.travels</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+    '''tree view inside form'''
+    <record id="vehicle_charges_view_tree" model="ir.ui.view">
+        <field name="name">vehicle_charges.tree</field>
+        <field name="model">vehicle.charges</field>
+        <field name="arch" type="xml">
+            <tree string="vehicle.charges" editable="bottom">
+                <field name="service"/>
+                <field name="quantity"/>
+                <field name="unit"/>
+                <field name="amount"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
+
+
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="package_travels_action" model="ir.actions.act_window" >
+            <field name="name">Package</field>
+            <field name="res_model">package.travels</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+<!--                           form-->
+        <record id="package_travels_view_form" model="ir.ui.view">
+            <field name="name">package.travels.form</field>
+            <field name="model">package.travels</field>
+            <field name="arch" type="xml">
+                <form string="package_travels">
+                     <header>
+                         <field name="state" widget="statusbar"/>
+                         <button name="button_in_confirmed" state="Draft" string="Confirm" type="object" attrs="{'invisible':[('state','=','confirmed')]}"/>
+                     </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="customer_id"/>
+                                <field name="source_location_id"/>
+                                <field name="destination_location_id"/>
+                                <field name="facilities_id"  options="{'no_edit': True, 'no_create': True}"/>
+                                <field name="vehicle_id"/>
+                                <field name="company_id"/>
+                            </group>
+                            <group>
+                                <field name="quotation_Date"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="number_of_travellers"/>
+                                <field name="vehicle_type"/>
+                                <field name="currency_id" invisible="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Estimation">
+                                <group>
+                                    <field name="estimated_km"/>
+                                </group>
+                                <field name="estimation_vehicle_id"/>
+                            </page>
+                        </notebook>
+                        <group>
+                        </group>
+                        <group class="oe_right" >
+                            <field name="total_amount" widget="monetary"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!--                         calendar-->
+        <record id="package_travels_view_calendar" model="ir.ui.view">
+            <field name="name">package_travels.calendar</field>
+            <field name="model">package.travels</field>
+            <field name="arch" type="xml">
+                <calendar  date_start="start_date" color="facilities_id" mode="month"  >
+                    <field name="customer_id"/>
+                </calendar>
+            </field>
+        </record>
+<!--                          tree-->
+        <record id="package_travels_view_tree" model="ir.ui.view">
+            <field name="name">package.travels.tree</field>
+            <field name="model">package.travels</field>
+            <field name="arch" type="xml">
+                <tree string="package_travels">
+                    <field name="customer_id"/>
+                    <field name="quotation_Date"/>
+                    <field name="number_of_travellers"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+        <!--tree view inside form for services-->
+        <record id="estimation_vehicle_view_tree" model="ir.ui.view">
+            <field name="name">estimation.vehicle.tree</field>
+            <field name="model">estimation.vehicle</field>
+            <field name="arch" type="xml">
+                <tree string="estimation.vehicle" editable="bottom">
+                    <field name="service"/>
+                    <field name="quantity"/>
+                    <field name="amount"/>
+                    <field name="sub_total"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+
+
+

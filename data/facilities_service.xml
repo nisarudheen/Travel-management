@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="facilities_data1" model="facilities.travels">
+            <field name="name">AC</field>
+     </record>
+     <record id="facilities_data2" model="facilities.travels">
+            <field name="name">TV</field>
+     </record>
+     <record id="facilities_data3" model="facilities.travels">
+            <field name="name">Sound system</field>
+     </record>
+     <record id="facilities_data4" model="facilities.travels">
+            <field name="name">Laser beam</field>
+     </record>
+</odoo>

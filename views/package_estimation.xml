@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="package_estimation_view_tree" model="ir.ui.view">
+        <field name="name">package.estimation.tree</field>
+        <field name="model">package.estimation</field>
+        <field name="arch" type="xml">
+            <tree string="package.estimation" editable="bottom">
+                <field name="service"/>
+                <field name="quantity"/>
+                <field name="amount"/>
+                <field name="sub_total"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
