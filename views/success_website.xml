@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="website_form_success">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h1>
+                        <span>
+                            <t t-esc="booking.customer_id.name"/>
+                        </span>
+                        <span>
+                            Your Booking Has Successfully Created
+                        </span>
+                    </h1>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

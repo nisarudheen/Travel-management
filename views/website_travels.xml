@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="website_travels_booking" name="Test Page">
+            <t t-call="website.layout">
+                <section class="s_website_form values" data-vcss="001" data-snippet="s_website_form">
+                    <div class="container" id="web_template">
+                        <form action="/booking/submit/" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-6 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label" for="studio1" style="width: 170px">
+                                            <span class="s_website_form_label_content">Name</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="name_id" type="text" class="form-control s_website_form_input" name="name" required="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            </br>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-6 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label" for="studio1">
+                                            <span class="s_website_form_label_content">No Of Passengers</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="no_of_passengers" type="int" class="form-control s_website_form_input" name="no_of_passengers" required="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            </br>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-6 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label" for="studio1" style="width: 170px">
+                                            <span class="s_website_form_label_content">Travel Date</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="Traveling_date" type="date" class="form-control s_website_form_input" name="travel_date" required="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            </br>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-6 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label" for="studio1" style="width: 170px">
+                                            <span class="s_website_form_label_content">From</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <select id="from_location" type="char" class="form-control s_website_form_input" name="source_location" required="1">
+                                                <t t-foreach="location" t-as="new" >
+                                                    <option t-att-value="new.id">
+                                                        <t t-esc="new.location"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            </br>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-6 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label" for="studio1"  style="width: 170px">
+                                            <span class="s_website_form_label_content">Service</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <select id="service_type" class="form-control s_website_form_input" name="service" required="1">
+                                            <t t-foreach="services" t-as="new">
+                                                <option t-att-value="new.id">
+                                                    <t t-esc="new.name" />
+                                                </option>
+                                            </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            </br>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-6 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label" for="studio1" style="width: 170px">
+                                            <span class="s_website_form_label_content">To</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <select id="to_location" class="form-control s_website_form_input" name="destination_location" required="1">
+                                                <n values=" "/>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            </br>
+                            <div class="form-group col-4 s_website_form_submit" data-name="Submit Button">
+                                <div style="width: 170px;" class="s_website_form_label"/>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </t>
+        </template>
+    </data>
+</odoo>

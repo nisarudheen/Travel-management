@@ -4,7 +4,7 @@ from odoo import models, fields
 class LocationTravels(models.Model):
 
     _name = "location.travels"
-    _description = "Locations of travel management"
+    _description = "Locations Travels"
     _rec_name = 'location'
 
     location = fields.Char(string='Location')

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="travels_management_report" model="ir.actions.report">
+        <field name="name">Report</field>
+        <field name="model">report.travels</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">travels_management.report_travels_order</field>
+        <field name="report_file">travels_management.report_travels_order</field>
+    </record>
+    <template id="report_travels_order">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h3 style="text-align:center;">Travels Management Report</h3>
+                </div>
+                 <div>
+                    <t t-if="customer">
+                        <span>Customer:</span>
+                        <span t-esc="customer"/>
+                    </t>
+                <br/>
+                     <t t-if="from_date">
+                        <span>FromDate:</span>
+                        <span t-esc="from_date"/>
+                    </t>
+                <br/>
+                    <t t-if="to_date">
+                        <span>To Date:</span>
+                        <span t-esc="to_date"/>
+                    </t>
+                </div>
+                <br/>
+                <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Source Location</th>
+                            <th>Destination Location</th>
+                            <th>Vehicle</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="data" t-as="new">
+                          <tr>
+                              <td>
+                                  <span t-esc="new['location']"/>
+                              </td>
+                              <td>
+                                  <span t-esc="new['destination_location']"/>
+                              </td>
+                              <td>
+                                  <span t-esc="new['name']"/>
+                              </td>
+                              <td>
+                                  <span t-esc="new['state']"/>
+                              </td>
+                          </tr>
+                      </t>
+                    </tbody>
+                </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

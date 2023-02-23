@@ -2,7 +2,7 @@
 <odoo>
     <record id="ir_cron_scheduler_recurring" model="ir.cron">
         <field name="name">Expired bookings</field>
-        <field name="model_id" ref="model_booking_management"/>
+        <field name="model_id" ref="model_booking_travels"/>
         <field name="state">code</field>
         <field name="code">model.process_scheduler_queue()</field>
         <field name="interval_number">1</field>

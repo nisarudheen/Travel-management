@@ -3,8 +3,8 @@ import datetime
 
 
 class BookingTravels(models.Model):
-    _name = "booking.management"
-    _description = "Booking of travel management "
+    _name = "booking.travels"
+    _description = "Booking Travels"
     _rec_name = "booking_reference"
 
     booking_reference = fields.Char(string='Reference', readonly=True,
@@ -45,15 +45,13 @@ class BookingTravels(models.Model):
     @api.onchange('package_id')
     def onchange_vehicle_id_field(self):
         self.write({'booking_line_ids': [(5, 0)]})
-        for rec in self.package_id.estimation_vehicle_id:
-            vals = {
+        self.write({'booking_line_ids': [(0, 0, {
                 'service': rec.service,
                 'quantity': rec.quantity,
 
                 'amount': rec.amount,
                 'booking_id': self.id
-            }
-            self.write({'booking_line_ids': [(0, 0, vals)]})
+            }) for rec in self.package_id.estimation_vehicle_id]})
 
     @api.depends('booking_line_ids')
     def _compute_total_amount(self):
@@ -112,7 +110,7 @@ class BookingTravels(models.Model):
     @api.model
     def create(self, vals):
         vals['booking_reference'] = self.env['ir.sequence'].next_by_code(
-            'booking.management.sequence') or _('New')
+            'booking.travels.sequence') or _('New')
         return super(BookingTravels, self).create(vals)
 
     @api.onchange('source_location_id')

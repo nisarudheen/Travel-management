@@ -6,17 +6,16 @@
             <field name="description">User access levels for Travels management</field>
             <field name="sequence">1</field>
         </record>
-        <record id="manager_access" model="res.groups">
-            <field name="name">Manager</field>
-            <field name="category_id" ref="travel_management"/>
-            <field name="implied_ids" eval="[(4, ref('user_access'))]"/>
-        </record>
         <record id="user_access" model="res.groups">
             <field name="name">User</field>
             <field name="category_id" ref="travel_management"/>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         </record>
-
+        <record id="manager_access" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="travel_management"/>
+            <field name="implied_ids" eval="[(4, ref('user_access'))]"/>
+        </record>
         <record model="ir.rule" id="travel_package_multi_company_rule`">
             <field name="name">Company restriction</field>
             <field name="model_id" ref="model_package_travels"/>

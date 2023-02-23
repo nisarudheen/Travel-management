@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 class PackageTravels(models.Model):
     _name = "package.travels"
-    _description = "packages of  travel management"
+    _description = "packages travels"
     _rec_name = "customer_id"
 
     customer_id = fields.Many2one('res.partner', string="Customer")
@@ -43,7 +43,7 @@ class PackageTravels(models.Model):
     vehicle_selection_ids = fields.One2many('vehicle.travels', 'facilities_id')
 
     def button_in_confirmed(self):
-        value = self.env["booking.management"].create({
+        self.env["booking.travels"].create({
             'customer_id': self.customer_id.id,
             'no_of_passengers': self.number_of_travellers,
             'booking_date': self.quotation_Date,
@@ -52,6 +52,7 @@ class PackageTravels(models.Model):
             'travel_Date': self.start_date,
             'expiration_date': self.end_date
              })
+
         self.write({
             'state': 'confirmed'
              })
@@ -78,29 +79,27 @@ class PackageTravels(models.Model):
         if not self.end_date:
             raise ValidationError('Please provide end date')
         for rec in val:
-            if self.vehicle_id == rec.vehicle_id and self.start_date <= rec.\
-                    end_date and self.end_date >= rec.start_date:
+            if self.vehicle_id == rec.vehicle_id \
+                    and self.start_date <= rec.end_date \
+                    and self.end_date >= rec.start_date:
                 raise ValidationError('This vehicle is already booked')
 
     @api.onchange('source_location_id')
     def onchange_source_location_field(self):
-        return {'domain': {'destination_location_id': [('id',
-                                                        '!=', self.
-                                                        source_location_id.id)
-                                                       ]}}
+        return {'domain': {'destination_location_id': [
+            ('id','!=', self.source_location_id.id)
+        ]}}
 
     @api.onchange('vehicle_id')
     def onchange_vehicle_id_field(self):
         self.write({'estimation_vehicle_id': [(5, 0)]})
-        for rec in self.vehicle_id.order_line_travel_ids:
-            vals = {
+        self.write({'estimation_vehicle_id': [(0, 0, {
                 'service': rec.service,
                 'quantity': rec.quantity,
 
                 'amount': rec.amount,
                 'estimation_id': self.id
-            }
-            self.write({'estimation_vehicle_id': [(0, 0, vals)]})
+            })for rec in self.vehicle_id.order_line_travel_ids]})
 
     @api.depends('estimation_vehicle_id')
     def _compute_total_amount(self):
@@ -110,7 +109,7 @@ class PackageTravels(models.Model):
 
 class EstimationVehicle(models.Model):
     _name = "estimation.vehicle"
-    _description = "Estimations of travels management"
+    _description = "Estimations Vehicle"
 
     service = fields.Char(string='Service')
     quantity = fields.Integer(string='Quantity')

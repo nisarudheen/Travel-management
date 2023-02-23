@@ -45,7 +45,7 @@ class VehicleTravels(models.Model):
 
 class VehicleCharges(models.Model):
     _name = "vehicle.charges"
-    _description = "Charges of vehicles"
+    _description = "vehicles Charges"
 
     service = fields.Char(string="Service")
     travel_id = fields.Many2one('vehicle.travels')
